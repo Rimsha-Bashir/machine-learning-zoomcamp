@@ -2,6 +2,7 @@
 - [Introduction to Machine Learning](#mlz-11---intro-to-ml)
 - [ML v/s Rule-Based System](#mlz-12---ml-vs-rule-based-systems)
 - [Supervised Machine Learning](#mlz-13---supervised-machine-learning)
+- [CRISP-DM ML](#mlz-14---crisp-dm)
 
 
 ### MLZ 1.1 - Intro to ML
@@ -85,6 +86,8 @@ Once your algorithm is trained, it becomes a trained model. Then, you can feed u
 
 ### MLZ 1.3 - Supervised Machine Learning
 
+[YT Link](https://youtu.be/j9kcEuGcC2Y?si=asafcY02jlVd7qaZ)
+
 The features data is called "Feature Matrix", a 2-D array where rows are objects for which we want to predict something and columns are features (object here for example is an email, and features is for example a word we're looking for in the email body/object) 
 
 Feature Matrix is referenced with X() - function X. 
@@ -96,7 +99,7 @@ g is the model - using X as input, the model will attempt to produce something t
 
 <details><summary>Email Classification: In Depth</summary>
 
-### Machine Learning Example: Spam Email Classification
+#### Machine Learning Example: Spam Email Classification
 
 ---
 
@@ -213,3 +216,40 @@ There are different types of supervised machine learning models.
     - multiclass (car, cat, dog etc)
     - binary (1,0 or true, false or cat, not cat etc)
 - Ranking (ex. recommendation systems, relevance ranking, etc)
+
+### MLZ 1.4 - CRISP DM
+
+[YT Link](https://youtu.be/dCa3JvmJbr0?si=XDl1MN7gUlHcNTuH)
+
+CRISP-DM stands for Cross Industry Standard Processing and data mining. It's a methodology used to organize ML projects. 
+
+ML Projects Steps:
+- Understand the problem
+- Collect the data
+- Train the model 
+- Use the model
+
+![crisp-dm](images/1.4.1.png)
+
+1. Business Understanding 
+    - Understand the problem (ex. users receiving a lot of spam emails)
+    - Define business goals (ex. reduce/block spam emails)
+    - Come up with a measureable metric for the goals. (ex. reduce spam emails by 50%)
+
+2. Data Understaning 
+    - Assess availability of data
+    - Identify sources 
+    - Analyze 
+
+3. Data Preparation: We have enough data, and we know it's reliabale. 
+    - Clean data 
+    - Build the pipelines
+    - Convert to tabular form
+
+4. Modeling: We try different models and select the best one. 
+
+5. Evaulation: Measure how well the model performs.
+
+6. Deployment: Deploy the model to production (generally happens with evaluation + the model is evaluated first on a set no. of users, then rolled out for everyone)
+
+7. Iteration: ML projects need a lot of iterations!
