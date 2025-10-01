@@ -3,6 +3,9 @@
 - [ML v/s Rule-Based System](#mlz-12---ml-vs-rule-based-systems)
 - [Supervised Machine Learning](#mlz-13---supervised-machine-learning)
 - [CRISP-DM ML](#mlz-14---crisp-dm)
+- [Model Selection](#mlz-15---model-selection-process)
+- [Github Codespaces](#mlz-16---github-codespaces)
+- [Intro to NumPy](#mlz-17---introduction-to-numpy)
 
 
 ### MLZ 1.1 - Intro to ML
@@ -311,3 +314,8 @@ During **Test**, the 60+20% becomes one large train dataset.
 
 ### MLZ 1.6 - Github Codespaces
 
+Completed HW-1
+
+### MLZ 1.7 - Introduction to NumPy
+
+[Click here for the notes](learning-numpy.ipynb)
