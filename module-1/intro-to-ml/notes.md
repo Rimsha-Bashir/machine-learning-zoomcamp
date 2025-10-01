@@ -253,3 +253,56 @@ ML Projects Steps:
 6. Deployment: Deploy the model to production (generally happens with evaluation + the model is evaluated first on a set no. of users, then rolled out for everyone)
 
 7. Iteration: ML projects need a lot of iterations!
+
+### MLZ 1.5 - Model Selection Process
+
+Let's say it's July, and we train the model g with X(). We'll take the data from July and before. 
+
+In July, we'll take the entire dataset we have and divide it into 20%-80% chunks. We take the 20% and set it aside--pretend it doesn't exist. We use the 80% of the data for training. We'll just assume the 20% is from the next month (i.e August, here). The 20% is validation dataset. 
+
+TRAIN :
+X, y and model g 
+
+VALIDATION : 
+X<sub>v</sub>, y<sub>v</sub>
+
+g(X<sub>v</sub>) = y<sup>^</sup><sub>v</sub> 
+
+Then, we compare y<sup>^</sup><sub>v</sub>  with the actual y<sub>v</sub>
+
+![train-test](images/1.5.1.png)
+
+where the y<sup>^</sup><sub>v</sub> values are predictions (if >=0.5 then Spam(1), else not Spam(0))
+
+so, here 4/6 are correctly classified, i.e the model is 66% accurate. 
+
+This was Logestic Regression, let's say. 
+
+Then, we take a Decision Tree, and it's accuracy let's say is 60%
+
+Random forest is 67% correct 
+
+Neural Network is 80% correct 
+
+i.e NN is the best model. 
+
+So, generally, this is how the model selection process works.
+
+But a problem arises in such a case - **multiple comparison or multiple testing problem!** 
+
+It happens when you run many statistical tests or comparisons on the same data, and the chance of finding something that looks "significant" just by random chance goes way up. The multiple comparison problem in ML is when running lots of tests/comparisons makes it likely you’ll find "false patterns." It’s like flipping 100 coins and being surprised when one lands heads 10 times in a row — it’s not magic, just probability.
+
+A very simple example is:
+Say you want to see if wearing red shoes makes people better at math.
+
+You test 20 random things (red shoes, blue shirts, coffee, socks, etc.).
+
+By pure chance, 1 of them will probably look like it "helps."
+
+You might mistakenly believe red shoes cause better math scores, but really it’s just randomness.
+
+<b>To counter this we split our dataset into validation and test sets. <b>
+
+Ex. 60% TRAIN, 20% VALIDATION, 20% TEST
+
+so we train the 60% and validate with the 20%, then decide NN model is the most accurate. To confirm that, we apply the NN algo to the 20% test dataset (X<sub>t</sub>, y<sub>t</sub>)  
