@@ -308,3 +308,6 @@ Ex. 60% TRAIN, 20% VALIDATION, 20% TEST
 so we train the 60% and validate with the 20%, then decide NN model is the most accurate. To confirm that, we apply the NN algo to the 20% test dataset (X<sub>t</sub>, y<sub>t</sub>)  
 
 During **Test**, the 60+20% becomes one large train dataset.  
+
+### MLZ 1.6 - Github Codespaces
+
