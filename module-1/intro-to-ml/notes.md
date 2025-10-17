@@ -316,6 +316,70 @@ During **Test**, the 60+20% becomes one large train dataset.
 
 Completed HW-1
 
+You know the drill. 
+
 ### MLZ 1.7 - Introduction to NumPy
 
 [Click here for the notes](learning-numpy.ipynb)
+
+### MLZ 1.8 - Linear Algebra Refresher
+
+Adding 1-D vector/column vector (np.array([1,2,3,4])) with a single number - the number added to each element. 
+
+Adding 1-D vector 'A' with another 1-D vector 'B' - Add each element in 'A' only with the corresponding element in 'B'. 
+
+
+<u>Dot Product</u>
+
+- Multiplication of vectors - col*col 
+
+    ![dot product](images/1.8.1.png)
+
+- row*col 
+
+    Use transpose.
+    v<sup>t</sup>*u, where v is the row vector and u is the column vector
+
+    ![transpose-dot-product](images/1.8.2.png)
+
+    In NumPy, it's `u.dot(v)`
+
+- Matrix-Vector multiplication
+
+    ![matrix-multi](images/1.8.3.png)
+    
+    the no. of columns in one should match the number of rows in the other.  
+
+    ![matrix-multi-2](images/1.8.4.png)
+    Output - array([14.,5.,5.])
+
+    `u.dot(v)` works
+
+- Matrix-Matrix Multiplication
+
+    ![matrix-matrix](images/1.8.5.png)
+
+    col1 - u*v0
+    col2 - u*v1
+    col3 - u*v2
+
+    ![matrix-matrix-code](images/1.8.6.png)
+
+    ![matrix-matrix-code-output](images/1.8.7.png)
+
+    `u.dot(v)` works
+
+**What is Identity Matrix?**
+
+U.I = I.U = U 
+
+![Identity Matrix](images/1.8.8.png)
+
+Inkvoked using `np.eye(n)` where n=no. of rows and cols (equal)
+
+**What is Matrix Inverse?**
+
+U<sup>-1<sup>
+
+`Uinv = np.linalg.inv(U)`
+Uinv.dot(U)
