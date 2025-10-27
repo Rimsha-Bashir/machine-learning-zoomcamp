@@ -350,3 +350,24 @@ Check the [notebook](../data-prep.ipynb)
 We're selecting the best regulaization parameter (i.e which gives the smallest RMSE)
 
 ## 2.15 Using the Model 
+
+Check the [notebook](../data-prep.ipynb)
+
+Concatenating train and validation - training the full model - then testing it on test dataframe to predict a car price 
+
+## 2.16 Summary 
+
+1. Data Preparation 
+2. Exploratory Data Analysis 
+3. Set up dataframes - for test, train and val (20,80,20 %'s)
+4. Implemented linear regression for a single element using a for loop - later expanded using vectors and vector formulae
+5. How to obtain weights (weight vector values) - for the entire dataset (train and val)? USING NORMAL EQUATION
+6. Trained the first - baseline model (using basic features) - tried to judge from a graph but that's not enough, so we have
+7. RMSE - Root mean square error - what is it and how to calculate it?
+8. Prepared and tested the model on validation dataset - got rmse 
+9. Feature Engineering - Process of creating new features from existing ones - we created num_of_doors, makes_model etc - the model performance improved
+10. How to integrate categorical variables? Each categorical column represented by a bunch of binary columns. This is called one-shot/hot coding. 
+11. After step 10 - peformance of the model degraded significantly (rmse was huge)
+12. It was caused due to numeric instability. Solution to the problem - Regularization ('r' parameter)
+13. Using the full - final model - train + validation dataset combined into 1 full train dataset. 
+14. Applied the model to a random car and predicted the price. 
