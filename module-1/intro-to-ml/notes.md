@@ -383,3 +383,7 @@ U<sup>-1<sup>
 
 `Uinv = np.linalg.inv(U)`
 Uinv.dot(U)
+
+### MLZ 1.9 - Intro to Pandas 
+
+Check the pandas file in DataTalks repo. 
