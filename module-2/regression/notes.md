@@ -296,3 +296,57 @@ e) Feature selection
 
 Check the [notebook](../data-prep.ipynb)
 
+## 2.13 Regularization
+
+Check the [notebook](../data-prep.ipynb)
+
+What is regularization?
+
+Regularization helps control overfitting — when a model fits the training data too closely, including noise or random fluctuations, and fails to generalize to new (unseen) data.
+
+It does this by adding a penalty term to the model’s loss function that discourages large or complex model parameters (like big weights in regression or neural networks).
+
+
+The problem with duplicates in the feature matrix - XTX Inverse gives an error
+
+A way to fix the problem - add a small number to the diagonal/matching row values. 
+
+ex. if our array looks like - 
+[
+    [1,2,2],
+    [2,1,1],
+    [2,1,1]
+]
+then you can do 
+[
+    [1,2,2],
+    [2,1,1.0001],
+    [2,1.0000001,1]    
+]
+
+or add 
+
+[
+    [1.00001,2,2],
+    [2,1,1.0001],
+    [2,1.0000001,1.00001]    
+]
+
+the larger the number - the more we have it under control 
+
+Why we need regularization?
+
+Big weights = model relies heavily on specific features → more sensitive to noise.
+
+Small weights = smoother, more robust predictions.
+
+Regularization shrinks weights, making the model less sensitive to small changes in the data.
+
+## 2.14 Tuning the Model
+
+
+Check the [notebook](../data-prep.ipynb)
+
+We're selecting the best regulaization parameter (i.e which gives the smallest RMSE)
+
+## 2.15 Using the Model 
