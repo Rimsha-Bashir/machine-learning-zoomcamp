@@ -84,6 +84,11 @@ Options:
 - With mean
 - Both are equally good
 
+#### Answer:
+
+ `With mean`
+
+Check out [homework.ipynb](../homework/homework.ipynb). 
 
 ### Question 4
 
@@ -104,6 +109,19 @@ Options:
 - 10
 - 100
 
+#### Answer:
+
+`0.01` is best rmse.
+
+![alt text](images/Q4.png)
+
+In case of rounding, 
+
+`0` is the best
+
+![alt text](images/Q4.1.png)
+
+Check out [homework.ipynb](../homework/homework.ipynb). 
 
 ### Question 5 
 
@@ -121,6 +139,15 @@ What's the value of std?
 - 0.006
 - 0.060
 - 0.600
+
+#### Answer 
+
+`0.001`
+
+![alt text](images/Q5.png)
+
+Check out [homework.ipynb](../homework/homework.ipynb). 
+
 
 > Note: Standard deviation shows how different the values are.
 > If it's low, then all values are approximately the same.
@@ -141,6 +168,14 @@ Options:
 - 0.515
 - 5.15
 - 51.5
+
+### Answer:
+
+`0.15`
+
+![alt text](images/Q6.png)
+
+Check out [homework.ipynb](../homework/homework.ipynb). 
 
 ## Submit the results
 
