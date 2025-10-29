@@ -33,3 +33,11 @@ Check the [notebook](data-preparation.ipynb).
 ## 3.5 Feature Importance: Churn Rate and Risk Ratio
 
 Check the [notebook](data-preparation.ipynb). 
+
+![alt text](./images/3.5.png)
+
+## 3.6 Feature Importance: Mutual Information 
+
+Check the [notebook](data-preparation.ipynb). 
+
+Mutual Information is a concept from information theory that tells us how much we can learn about one variable if we know the value of another.  
