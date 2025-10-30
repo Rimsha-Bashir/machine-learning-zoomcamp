@@ -41,3 +41,13 @@ Check the [notebook](data-preparation.ipynb).
 Check the [notebook](data-preparation.ipynb). 
 
 Mutual Information is a concept from information theory that tells us how much we can learn about one variable if we know the value of another.  
+
+## 3.6 Feature Importance: Correlation
+
+Check the [notebook](data-preparation.ipynb). 
+
+The way to measure feature importance for categorical variables.
+
+## 3.7 One-Hot Encoding
+
+Check the [notebook](data-preparation.ipynb). 
