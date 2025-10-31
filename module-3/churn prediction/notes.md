@@ -222,3 +222,7 @@ df
   - DictVectorizer must **fit only on training data**; validation/test are just transformed.
 
 </details>
+
+## 3.13 Summary
+
+Just go through the nb. 
