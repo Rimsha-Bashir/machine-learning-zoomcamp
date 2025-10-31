@@ -51,3 +51,7 @@ The way to measure feature importance for categorical variables.
 ## 3.7 One-Hot Encoding
 
 Check the [notebook](data-preparation.ipynb). 
+
+## 3.8 Logistic Regression 
+
+Check the [notebook](data-preparation.ipynb). 
