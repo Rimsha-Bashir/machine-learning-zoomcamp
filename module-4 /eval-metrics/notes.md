@@ -13,3 +13,15 @@
 ## 4.4 Precision & Recall
 
 [Check NB](./data-preparation.ipynb)
+
+## 4.5 & 4.6 Plotting ROC Curves
+
+[Check NB](./data-preparation.ipynb)
+
+## 4.7 ROC AUC
+
+[Check NB](./data-preparation.ipynb)
+
+## 4.8 Cross-Validation
+
+[Check NB](./data-preparation.ipynb)
