@@ -11,3 +11,6 @@ Here, we learn about Decision Tree and Ensemble learning.
 [Check NB](./credit-risk-project.ipynb)
 
 ## 6.4 Decision Tree Learning Algorithm
+
+[Check NB](./credit-risk-project.ipynb)
+
