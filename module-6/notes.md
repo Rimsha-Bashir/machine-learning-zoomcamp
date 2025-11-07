@@ -17,3 +17,7 @@ Here, we learn about Decision Tree and Ensemble learning.
 ## 6.5 Decision Tree Parameter Tuning
 
 [Check NB](./credit-risk-project.ipynb)
+
+## 6.6 Ensemble Learning and Random Forest 
+
+[Check NB](./credit-risk-project.ipynb)
