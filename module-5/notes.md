@@ -17,3 +17,19 @@ We'll take our churn prediction model, and
 [Check NB](./data-preparation.ipynb) - last few lines of code. 
 
 The model has been downloaded to module-4/eval_metrics folder
+
+## 5.3 Web Services: Introduction to Flask
+
+[Check app](./test-app.py)
+
+## 5.4 Serving the churn model with Flask
+
+`pip install gunicorn` for wgsi prod server. 
+
+@Rimsha-Bashir ➜ /workspaces/machine-learning-zoomcamp/module-5 (main) $ `gunicorn --bind 0.0.0.0:9696 predict:app`
+
+[check predict-app-test](./predict-app-test.ipynb)
+
+and 
+
+[check predict app](./app.py)
