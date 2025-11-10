@@ -21,3 +21,15 @@ Here, we learn about Decision Tree and Ensemble learning.
 ## 6.6 Ensemble Learning and Random Forest 
 
 [Check NB](./credit-risk-project.ipynb)
+
+## 6.7 Gradient Boosting and XGBoost
+
+[Check NB](./credit-risk-project.ipynb)
+
+## 6.8 XGBoost Parameter Tuning
+
+[Check NB](./credit-risk-project.ipynb)
+
+## 6.9 Selecting the Final Model
+
+[Check NB](./credit-risk-project.ipynb)
