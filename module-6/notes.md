@@ -33,3 +33,7 @@ Here, we learn about Decision Tree and Ensemble learning.
 ## 6.9 Selecting the Final Model
 
 [Check NB](./credit-risk-project.ipynb)
+
+## 6.10 Summary 
+
+[Check NB](./credit-risk-project.ipynb)
