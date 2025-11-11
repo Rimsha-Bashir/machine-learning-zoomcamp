@@ -33,3 +33,25 @@ The model has been downloaded to module-4/eval_metrics folder
 and 
 
 [check predict app](./app.py)
+
+## 5.5 Python Virtual Env: pipenv 
+
+- `pip install pipenv`
+- `pipenv install numpy pandas scikit-learn==0.24.2 flask`
+- pipenv install - once you've done it (for someone who'll clone it as the pipfile is already created.)
+
+- pipenv shell (launches subshell)
+
+then 
+
+- gunicorn --bind 0.0.0.0/9696 predict:app
+    or 
+- pipenv install waitress
+- waitress-serve --listen=0.0.0.0:9696 predict:app
+
+
+- Use a Windows-compatible WSGI server
+ Instead of Gunicorn, use Waitress, which works on Window
+- Inside WSL or Docker, Gunicorn works fine.
+
+## 5.6 Docker
