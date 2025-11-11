@@ -55,3 +55,79 @@ then
 - Inside WSL or Docker, Gunicorn works fine.
 
 ## 5.6 Docker
+
+    DockerFile
+
+    FROM <image>
+
+    RUN pip install pipenv 
+
+    WORKDIR /app     # you've got to create mkdir app in the container.  
+
+    COPY ["Pipfile", "Pipfile.lock", "./"]
+
+to build - `docker build -t zoomcamp-test .` (. - using docker file from current directory)
+
+then to run it - 
+`docker run -it -rm --entrypoint=bash zoomcamp-test`
+
+when you run it, you'll be inside `/app`
+and inside /app is pipfile and pipfile.lock
+
+inside you can do pipenv install (it'll install what's there in the pipfile)
+
+we don't want to do this manually, so let's update the `Dockerfile`.
+
+    FROM <image>
+
+    RUN pip install pipenv 
+
+    WORKDIR /app     # you've got to create mkdir app in the container.  
+
+    COPY ["Pipfile", "Pipfile.lock", "./"]
+    
+    RUN pipenv install --system --deploy 
+    
+    # instead of creating virtual env, it creates a sys?
+
+
+Copy predict.py files:
+
+    FROM <image>
+
+    RUN pip install pipenv 
+
+    WORKDIR /app     # you've got to create mkdir app in the container.  
+
+    COPY ["Pipfile", "Pipfile.lock", "./"]
+    
+    RUN pipenv install --system --deploy 
+
+    COPY ["predict.py", "model_C=1.0.bin", "./"]
+
+
+then do waitress/gunicorn serve and you'll have the service running 
+
+next, expose the port. 
+
+
+
+    FROM <image>
+
+    RUN pip install pipenv 
+
+    WORKDIR /app     # you've got to create mkdir app in the container.  
+
+    COPY ["Pipfile", "Pipfile.lock", "./"]
+    
+    RUN pipenv install --system --deploy 
+
+    COPY ["predict.py", "model_C=1.0.bin", "./"]
+
+    EXPOSE 9696
+
+    ENTRYPOINT ["gunicorn", "--bind=0.0.0.0:9696", "predict:app"]
+
+
+Execute this with:
+`docker run -it -rm -p 9696:9696 zoomcamp-test`
