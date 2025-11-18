@@ -130,4 +130,4 @@ next, expose the port.
 
 
 Execute this with:
-`docker run -it -rm -p 9696:9696 zoomcamp-test`
+`docker run -it --rm -p 9696:9696 zoomcamp-test`
