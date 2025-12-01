@@ -83,3 +83,9 @@ tf.config.list_physical_devices('GPU')
 If it lists a GPU → GPU is active
 
 If it returns [] → No GPU available
+
+## 8.3 Pre-trained convolution neural networks
+
+[Check nb-1](./fashion-classification.ipynb)
+and 
+[Check nb-2](https://colab.research.google.com/drive/1BQvZEn11J9XUZj8TqM2zA3gv22kyIahD?usp=sharing)
