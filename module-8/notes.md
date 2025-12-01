@@ -89,3 +89,93 @@ If it returns [] → No GPU available
 [Check nb-1](./fashion-classification.ipynb)
 and 
 [Check nb-2](https://colab.research.google.com/drive/1BQvZEn11J9XUZj8TqM2zA3gv22kyIahD?usp=sharing)
+
+
+## 8.4 Convolutional Neural Networks 
+
+[Check nb-2](https://colab.research.google.com/drive/1BQvZEn11J9XUZj8TqM2zA3gv22kyIahD?usp=sharing)
+
+A CNN has two types of layers - convolutional, and dense. 
+
+![alt text](./images/8.4.1.png)
+
+Convolutional layers consists of `filters` which are like small images (eg. 5x5 sized etc.). It contains simple shapes as seen in the img above. 
+
+and a CNN model runs the filter over the image and outputs a number signifying the likeness/similarity of the filter to the particular part of the image
+
+the resulting matrix is a `feature map`
+
+**there will me as many feature maps as there are filters**
+
+Hence, the output of a convolution layer (CNL1) is the feature map - which can be our new image. 
+
+The next convolution layer has it's own set of filters and produces a new feature map. 
+
+Let's say we have 6 set of features, and so, we'll have 6 feature maps. 
+
+![alt text](./images/8.4.2.png)
+
+feature set 2 will be more complex than feature set 1 - combination of filters for the first set will look like one from set 2
+
+for ex. (as in the image) 2 slanted lines in opp directions when put together form an `X`
+
+
+<details>
+<summary>NOTES SUMMARY</summary>
+
+1. Filters and Feature Maps
+
+- **Filters** (also called **kernels**) are small matrices, e.g., 3×3 or 5×5, that detect specific patterns in the image (like vertical lines, horizontal lines, or edges). ✅ Correct
+- When you **slide a filter over the image** (convolution), it produces a number at each position — this is the **activation**, showing how much that pattern matches that part of the image. ✅ Correct
+- Collecting all these numbers gives the **feature map**. ✅ Correct
+- You have **one feature map per filter**. ✅ Correct
+- Multiple filters can detect multiple patterns in the same image → multiple feature maps per layer. ✅ Correct
+
+Your description of combining simple features (lines) into more complex ones (like an “X”) is also correct — deeper layers capture more complex patterns. ✅
+
+2. Two Layers vs Multiple Convolutional Layers
+
+- Saying a CNN has “two layers: convolutional and dense” usually refers to **types of layers**, not the number of convolutional layers.
+- A real CNN usually has **many convolutional layers**, each with its own set of filters.
+- First convolutional layers detect **basic patterns** (edges, lines).
+- Later convolutional layers detect **more complex patterns** (shapes, corners, objects) by combining feature maps from previous layers.
+
+✅ **“Two types of layers” ≠ only two convolutional layers**
+
+3. Filter vs Filter Set
+
+- Each **filter** detects **one pattern**.
+- A **set of filters** in a layer is the collection of all filters in that layer.
+- Example:
+  - Layer 1: 6 filters → 6 feature maps
+  - Layer 2: 6 filters → 6 new feature maps
+
+
+4. Feature Map as an Image
+
+- A **feature map** is a 2D matrix of numbers. Each number represents how strongly a filter activated at that location.
+- You can **visualize it as a grayscale image**, where brighter pixels mean stronger activation.
+- After the first convolutional layer, the output (all feature maps) can be treated as a **new image with multiple channels**, which becomes input to the next convolutional layer. ✅
+
+**Example:**
+
+- Input image: 28×28×1 (grayscale)
+- Layer 1: 6 filters → 6 feature maps → shape 28×28×6
+- Layer 2: 6 filters → each sees all 6 feature maps from Layer 1 → 6 new feature maps → shape 28×28×6 (or smaller if pooling applied)
+
+5. Summary of Key Questions
+
+| Question | Answer |
+| --- | --- |
+| Two layers vs multiple CNN layers | “Two layers” usually means **types of layers** (convolutional + dense). A CNN can have multiple convolutional layers. |
+| Filter set or filter | Each **filter** detects one pattern. The **set of filters** in a layer produces multiple feature maps. |
+| Feature map count | One feature map per filter. So 6 filters → 6 feature maps. Each new convolutional layer has its own set of filters → new feature maps. |
+| Feature map as an image | A feature map is a 2D matrix of activations. You can **visualize it as an image** to see what the filter is detecting. |
+
+
+6. Key Clarifications
+
+- “Two layers” = **layer types**, not the literal count of convolutional layers.
+- Each convolutional layer usually has multiple filters → multiple feature maps.
+- Feature maps can be treated as images → input for the next convolutional layer.
+</details>
