@@ -209,3 +209,6 @@ __marimo__/
 # pipenv files
 Pipfile
 .lock
+
+module-8/clothing-dataset-small.zip
+module-8/clothing-dataset-small/
