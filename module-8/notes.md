@@ -179,3 +179,31 @@ Your description of combining simple features (lines) into more complex ones (li
 - Each convolutional layer usually has multiple filters → multiple feature maps.
 - Feature maps can be treated as images → input for the next convolutional layer.
 </details>
+
+
+The output of applying the CONV layers is `vector representation`. 
+Now, with this vector rep we create dense layers that give us the final output/prediction, which, here, is say, a t-shirt. 
+
+**For binary classification:**
+
+We take the xi to xn in the vector and multiply it by weights w1 to wn and sum them, then apply the sigmoid fnc (here it will be, t-shirt, or no t-shirt)
+
+g(x) = sigmoid(x<sup>T</sup>w)
+
+![alt text](./images/8.4.3.png)
+
+**For multiclass classification:**
+
+![alt text](./images/8.4.4.png)
+
+Here, sigmoid is replaced with `soft max` - generalized fnc, and w is what differs for each item. 
+
+Basically, multiple logistic regression models put together. 
+
+![alt text](./images/8.4.5.png)
+
+The space/layer between the input and output is what we call the `dense layer` -> because of all the connections between elements of input and outputs. 
+
+Pooling is what makes a feature map smaller. eg. if your feature map is 200x200, then after pooling it has 100x100. 
+
+For an in-depth understanding of how CNN's work for images, check this https://cs231n.github.io/convolutional-networks/
