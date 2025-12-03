@@ -249,3 +249,6 @@ we don't want to use this base model, we only want to extract vector rep from it
 ![alt text](./images/8.5.3.png)
 
 The above is what we call pooling - reducing the dimensionality of something so it can be represented in 1D
+
+.... check gcolab
+
