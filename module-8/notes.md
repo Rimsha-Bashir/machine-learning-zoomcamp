@@ -207,3 +207,45 @@ The space/layer between the input and output is what we call the `dense layer` -
 Pooling is what makes a feature map smaller. eg. if your feature map is 200x200, then after pooling it has 100x100. 
 
 For an in-depth understanding of how CNN's work for images, check this https://cs231n.github.io/convolutional-networks/
+
+
+## 8.5 Transfer Learning
+
+input -> conv layers -> vector rep -> dense layers -> prediction
+
+`conv layers + vector rep` are already trained on imagenet and they're more or less generic so we don't need to change them. 
+
+dense layers are specific to the dataset (we disuse what we get from imagenet)
+
+so we keep conv layers and train dense layers. 
+
+....
+
+check gcolab notes 
+
+![alt text](./images/8.5.1.png)
+
+
+image -> conv layers -> vector rep
+
+our base model here is Xception. 
+
+we will train the rest (dense layers/custom model part)
+
+![alt text](./images/8.5.2.png)
+
+Keras uses a bottom up approach and refers to dense layers + output as the top layer and convolutional netw + vector rep + input as the bottom layer
+
+thus, when you create a base_model 
+
+i.e 
+
+base_model = Xception(weights='imagenet', include_top=False, input_shape(150,150,3))
+
+we don't want to use this base model, we only want to extract vector rep from it. 
+
+.... check gcolab
+
+![alt text](./images/8.5.3.png)
+
+The above is what we call pooling - reducing the dimensionality of something so it can be represented in 1D
