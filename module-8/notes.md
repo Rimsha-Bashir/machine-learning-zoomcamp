@@ -211,6 +211,10 @@ For an in-depth understanding of how CNN's work for images, check this https://c
 
 ## 8.5 Transfer Learning
 
+Transfer learning is when you take a model (Model A) that has already been trained on a large, general dataset, and reuse part or all of it to help train a new model (Model B) on a smaller or more specific dataset.
+
+Here, we're using the trained layers of convolutional networks for the dense layers.  
+
 input -> conv layers -> vector rep -> dense layers -> prediction
 
 `conv layers + vector rep` are already trained on imagenet and they're more or less generic so we don't need to change them. 
@@ -252,3 +256,40 @@ The above is what we call pooling - reducing the dimensionality of something so 
 
 .... check gcolab
 
+## 8.6 Adjusting the learning rate
+
+Learning rate is how fast you read/learn. 
+
+If you read 10+ books p/year, you're learning rate is high. 
+
+If you read 4 p/year, you're learning rate is medium 
+
+If you read 1 p/year, you're learning rate is slow. 
+
+It's more likely you learnt everything very well/the best in the last case, but problem is that it takes too long. In case 1, maybe you forget and don't retain info as well, which means our model will do poorly in validation and cause overfitting. 
+
+In case 3, you underfit, because it was possible to learn faster. 
+
+So what we're looking to do is here, is find an appropriate learning rate (no. of books, say) that doesn't comprosomise on performance quality while also taking less time. 
+
+
+
+
+## 8.7 Checkpointing
+
+Way of saving the model after each iteration or after certain conditions are met. 
+
+In a Convolutional Neural Network (CNN), an epoch is a single pass through the entire training dataset.
+
+![alt text](./images/8.5.4.png)
+
+save_best_only: saves only the best accuracy epochs. 
+
+keras.callbacks.ModelCheckpoint(
+    'xception_v1_{epoch:02d}_{val_accuracy:.3f}.h5',
+    save_best_only=True, 
+    monitor='val_accuracy',
+    mode='max' # because we want to maximize accuracy, if we were monitoring losses, then mdode=min
+    )
+
+  The above is how you create a checkpoint. 
