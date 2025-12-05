@@ -306,8 +306,18 @@ Here, we add more dense layers.
 
 Add an inner layer as above ^^ 
 
+Each layer needs its own activation function. 
+
+Some activation functions are:
+
+1. Sigmoid 
+2. Softmax 
+3. ReLU (Rectified Linear Unit) **This is what we're using here**
+etc
 
 
+1, 2 - usually used with o/p 
+3 - userd for intermediate steps. 
 
 
 
