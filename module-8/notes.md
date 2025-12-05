@@ -292,4 +292,223 @@ keras.callbacks.ModelCheckpoint(
     mode='max' # because we want to maximize accuracy, if we were monitoring losses, then mdode=min
     )
 
-  The above is how you create a checkpoint. 
+The above is how you create a checkpoint. 
+
+![alt text](./images/8.7.1.png)
+
+If you observe the image above, you'll note that only the best val_accuracy models are saved. 
+
+## 8.8 Adding more layers 
+
+Here, we add more dense layers. 
+
+![alt text](./images/8.7.2.png)
+
+Add an inner layer as above ^^ 
+
+
+
+
+
+
+
+## NOTES:
+
+1. Difference between Softmax and Usig Logits. 
+
+What is Softmax? 
+Softmax is a function that converts a vector of **raw scores** (called *logits*) into a **probability distribution**.
+
+Given a vector:
+
+\[
+z = [z_1, z_2, ..., z_k]
+\]
+
+The softmax value for each component is:
+
+\[
+\text{softmax}(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{k} e^{z_j}}
+\]
+
+This makes:
+- all values positive  
+- values sum to 1  
+- outputs interpretable as probabilities 
+
+
+What are Logits?
+Logits are <b>raw, unnormalized outputs</b> of the final Dense layer:
+
+```python
+Dense(10)   # NO activation
+```
+
+
+The numbers:
+
+  Can be positive or negative
+
+  Don’t sum to anything
+
+  Are NOT probabilities
+
+
+| Concept            | Logits                  | Softmax                        |
+| ------------------ | ----------------------- | ------------------------------ |
+| What it is         | Raw model outputs       | Probabilities                  |
+| Values             | Any real numbers        | 0–1                            |
+| Sum                | No constraint           | Sums to 1                      |
+| Interpretation     | Not interpretable       | Interpretable as probabilities |
+| When used          | With `from_logits=True` | With `from_logits=False`       |
+| Typical last layer | `Dense(num_classes)`    | `Dense(num_classes, softmax)`  |
+
+
+2. Difference between sigmoid and softmax 
+
+| Feature                     | Sigmoid                              | Softmax                                   |
+| --------------------------- | ------------------------------------ | ----------------------------------------- |
+| Purpose                     | Binary or multi-label                | Multi-class                               |
+| Output range                | 0–1                                  | 0–1                                       |
+| Sum to 1?                   | ❌ No                                 | ✔️ Yes                                    |
+| Classes mutually exclusive? | ❌ No                                 | ✔️ Yes                                    |
+| Final layer size            | 1 (binary) or K (multi-label)        | K                                         |
+| Works on logits?            | Yes                                  | Yes                                       |
+| Loss (logits)               | BinaryCrossentropy(from_logits=True) | CategoricalCrossentropy(from_logits=True) |
+
+
+
+3. Difference between Multi-Class and Multi-Label 
+
+| Feature              | Multi-Class                          | Multi-Label                          |
+| -------------------- | ------------------------------------ | ------------------------------------ |
+| # of correct classes | **1**                                | **Many**                             |
+| Output activation    | **Softmax**                          | **Sigmoid (per class)**              |
+| Loss                 | categorical_crossentropy             | binary_crossentropy                  |
+| Output type          | Probability distribution (sums to 1) | Independent probabilities            |
+| Example              | “what type of clothing is this?”     | “what objects appear in this photo?” |
+
+
+| Function    | Used for                                    | Description                                                 |
+| ----------- | ------------------------------------------- | ----------------------------------------------------------- |
+| **Sigmoid** | **Binary** or **multilabel** classification | Computes probability *independently for each output neuron* |
+| **Softmax** | **Multiclass** classification               | Computes probability *across all classes so they sum to 1*  |
+
+
+**Logits basically means, there's no activation**
+
+
+5. "If the loss function already applies softmax internally (in case of using logits), why apply it explicitly?"
+
+
+You don’t need to.
+You should choose one of the following:
+
+Option A — Use logits (NO softmax layer)
+
+```py
+Dense(10)  # no activation
+loss = CategoricalCrossentropy(from_logits=True)
+```
+
+Softmax is applied inside the loss during training.
+
+Option B — Use softmax explicitly
+
+```py
+Dense(10, activation="softmax")
+loss = CategoricalCrossentropy(from_logits=False)
+```
+
+Softmax happens in the model.
+
+Never do both.
+Never do neither.
+
+
+If you train with logits (no softmax), then after training:
+
+```py
+preds = model.predict(x)
+```
+
+will output raw logits, not probabilities.
+
+| Scenario                                     | Last Layer                        | Loss               | Where softmax happens?        |
+| -------------------------------------------- | --------------------------------- | ------------------ | ----------------------------- |
+| **Logits training**                          | `Dense(10)`                       | `from_logits=True` | Inside loss                   |
+| **Softmax training**                         | `Dense(10, activation="softmax")` | default            | Inside model                  |
+| **Using softmax + from_logits=True (WRONG)** | ❌                                 | ❌                  | Double softmax = bad          |
+| **Logits + from_logits=False (WRONG)**       | ❌                                 | ❌                  | No softmax = meaningless loss |
+
+
+
+6. How are the training labels hidden from the model (ex. in linear regression we remove the target variable from the dataset so the model doesn't learn it)?
+
+#### Understanding Training with Pretrained Models and Labels
+
+##### 1. Where are the true labels coming from?
+
+When doing image classification with a folder structure like:
+
+train/
+tshirt/
+skirt/
+...
+validation/
+tshirt/
+skirt/
+...
+test/
+tshirt/
+skirt/
+...
+
+markdown
+Copy code
+
+- Each **subfolder name** is automatically treated as a **class label**.  
+- Keras’ `flow_from_directory` scans the folder names and assigns numeric labels internally:
+  - `tshirt → 0`  
+  - `skirt → 1`  
+  - etc.  
+- The generator produces `(batch_images, batch_labels)` for training.
+
+##### Important:
+- You **do not manually remove or separate the labels**; the generator handles it automatically.
+- This avoids the model overfitting on labels because it only sees the images and the assigned class during training.
+
+---
+
+##### 2. What happens internally when training with a pretrained model (e.g., Xception)?
+
+1. **Input images** are fed into the pretrained Xception backbone.
+2. **Preprocessing**: Images are normalized to match what Xception expects (`preprocess_input`).
+3. **Feature extraction**: Xception convolutional layers detect edges, textures, and shapes.
+4. **Global Average Pooling**: Reduces spatial feature maps into a single vector per image.
+5. **Custom Dense layer**: Outputs predictions (softmax probabilities or logits) for your 10 clothing classes.
+6. **Loss calculation**:
+   - The model compares predicted probabilities with the **true labels** provided by `flow_from_directory`.
+   - Loss function (e.g., categorical crossentropy) computes the error.
+7. **Backpropagation**:
+   - Gradients are calculated only for trainable layers (your Dense classifier).
+   - Base Xception layers are frozen (`trainable=False`), so their weights do **not** change.
+
+---
+
+##### 3. How does this avoid overfitting?
+
+- By freezing the pretrained layers:
+  - Only the new classifier is trained.
+  - Prevents the model from memorizing small datasets.
+- The backbone already contains useful generalized features from ImageNet.
+- Labels are provided only through folder structure, not embedded in the images themselves.
+
+---
+
+##### 4. Summary
+
+- Labels come **directly from folder names**.  
+- Pretrained models act as feature extractors.  
+- Only the new Dense layers are trained to map extracted features to your dataset classes.  
+- This setup ensures proper transfer learning without overfitting to the training 
