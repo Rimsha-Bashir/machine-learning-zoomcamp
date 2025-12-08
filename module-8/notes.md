@@ -319,7 +319,74 @@ etc
 1, 2 - usually used with o/p 
 3 - userd for intermediate steps. 
 
+## 8.9 Regularization & Dropout 
 
+If we train out model for 10 epochs -> we'll go over the same data 10 times -> our neural netw will see the same image 10 times
+
+Then NN might make an incorrect pattern-based assumption
+
+Ex. if there's a logo of a bird on a t-shirt, it may associate the bird with the t-shirt and classify every clothing item with a bird on it as a t-shirt   
+
+Solution to this - Maybe we hide a part of the image during each epoch like below. 
+
+![alt text](./images/8.9.1.png)
+
+So each time the network sees a slightly different image. **This is the main idea behind dropout**
+
+How is dropout implemented?
+
+![alt text](./images/8.9.2.png)
+
+Parts of the dense inner layer are frozen.
+
+If each circle (neuron) represents an element in the vector (which corresponds to patterns in the image). Then by **freezing** a particular neuron, we're essentially fixing a part of the image. 
+
+Different epochs -> different neurons are frozen. 
+
+By doing this, we force the network to look at the bigger picture instead of focusing on minor details. 
+
+
+Overall, this is how our network now looks like:
+
+V3 
+
+![alt text](./images/8.9.3.png)
+
+
+## 8.10 Data Augmentation 
+
+The problem discussed above has more than one possible solutions.
+
+Here, we generate more images from existing image and train the neural network on all the images. 
+
+Possible image transformation:
+
+1. Flip (vertical, horizontal, or both) - this is not the best method because the angles remain the same. 
+
+2. Rotation (15deg, 30deg, -15deg etc.) - here a part of the image is lost. 
+
+3. Height Shift (15deg, 30deg, -15deg etc.) - moves up and down 
+
+4. Width Shift (15deg, 30deg, -15deg etc.) - moves left or right
+
+5. Shear (15deg, 30deg, -15deg etc.) - one or more sides of the image pulled
+
+6. Zoom In/Out (X-Axis and Y-Axis - 0.25, 1, 3, 4)
+
+7. Brightness/Contrast Adjustment
+
+
+**How to decide whether augmentation is needed or not?**
+
+- Use your own judgement based on the dataset - what kind of variations exist in the dataset, are the objects always centered? Decide based on the answers, what kind of shift/adjustments are needed?
+
+- Tune it as a hyperparameter. Train for 10-20 epochs. Is it better? If yes, use. If not, don't use. If it's the same? Increase epoch count, but if you don't observe any improvements even then, don't use. 
+
+### Optimization techniques so far:
+
+1. Learning Rate 
+2. Dense Layer Size 
+3. Regularization
 
 
 ## NOTES:
