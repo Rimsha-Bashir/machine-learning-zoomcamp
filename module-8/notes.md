@@ -382,6 +382,12 @@ Possible image transformation:
 
 - Tune it as a hyperparameter. Train for 10-20 epochs. Is it better? If yes, use. If not, don't use. If it's the same? Increase epoch count, but if you don't observe any improvements even then, don't use. 
 
+## 8.11 Training a larger model
+
+A larger model, i.e 299x299 sized images. 
+
+
+
 ### Optimization techniques so far:
 
 1. Learning Rate 
