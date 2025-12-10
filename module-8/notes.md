@@ -387,7 +387,6 @@ Possible image transformation:
 A larger model, i.e 299x299 sized images. 
 
 
-
 ### Optimization techniques so far:
 
 1. Learning Rate 

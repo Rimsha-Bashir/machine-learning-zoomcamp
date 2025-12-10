@@ -174,7 +174,7 @@ Then, in another git bash window,
 run:
 
 ```bash
-$ docker run -it --rm -p 8080:8080 churn-prediction-lambda 
+$ python test.py
 ```
 
 
@@ -187,6 +187,39 @@ No other settings to be changed
 Create Repository, then copy URI 
 
 We create a [publish.sh](../workshop/sklearn/publish.sh) file to do this. Check out the file. 
+
+Testing the login:
+
+```bash
+rimsh@LAPTOP-J29FGN6B MINGW64 ~/Desktop/rimsha/github/machine-learning-zoomcamp/workshop/sklearn (main)
+$ ECR_URL=565919381802.dkr.ecr.eu-north-1.amazonaws.com
+
+rimsh@LAPTOP-J29FGN6B MINGW64 ~/Desktop/rimsha/github/machine-learning-zoomcamp/workshop/sklearn (main)
+$ REPO_URL=${ECR_URL}/churn-prediction-lambda
+
+rimsh@LAPTOP-J29FGN6B MINGW64 ~/Desktop/rimsha/github/machine-learning-zoomcamp/workshop/sklearn (main)
+$ LOCAL_IMAGE=churn-prediction-lambda
+
+rimsh@LAPTOP-J29FGN6B MINGW64 ~/Desktop/rimsha/github/machine-learning-zoomcamp/workshop/sklearn (main)
+$ aws ecr get-login-password \
+>   --region "eu-north-1" \
+> | docker login \
+>   --username AWS \
+>   --password-stdin ${ECR_URL}
+Login Succeeded
+```
+
+After login succeeds, we proceed to tag and push the docker image to the registry. 
+
+`docker push command`: to share your images to the Docker Hub registry or to a self-hosted one. 
+`docker tag command`: a Docker image tag is simply a label that helps you identify a specific version of a Docker image.
+
+Then, create a new lambda function and use the above image. 
+
+Test with a `customer` json input. 
+
+
+### :exclamation::exclamation: Skipping ONNX (Open Neural Network Exchange) for now. Check out the [workshop video (second half)](https://www.youtube.com/watch?v=sHQaeVm5hT8&list=PL3MmuxUbc_hIhxl5Ji8t4O6lPAOpHaCLR&index=84) to learn how to use it. The notes are [here](https://github.com/alexeygrigorev/workshops/tree/main/mlzoomcamp-serverless)
 
 
 ## NOTES:
