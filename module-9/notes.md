@@ -8,7 +8,7 @@
 
 We don't need to create EC2 instances etc, since lambda is serverless. And we're charged only when the lambda function is doing something (event sent/triggered)
 
-## 9.2 Deploy ML models with AWS Lambda 
+## 9.2 - 9.6 Deploy ML models with AWS Lambda, ONNX and PyTorch
 
 FOLLOW - https://github.com/alexeygrigorev/workshops/tree/main/mlzoomcamp-serverless
 
@@ -219,7 +219,10 @@ Then, create a new lambda function and use the above image.
 Test with a `customer` json input. 
 
 
-### :exclamation::exclamation: Skipping ONNX (Open Neural Network Exchange) for now. Check out the [workshop video (second half)](https://www.youtube.com/watch?v=sHQaeVm5hT8&list=PL3MmuxUbc_hIhxl5Ji8t4O6lPAOpHaCLR&index=84) to learn how to use it. The notes are [here](https://github.com/alexeygrigorev/workshops/tree/main/mlzoomcamp-serverless)
+### :exclamation::exclamation: Skipping ONNX (Open Neural Network Exchange) and PyTorch for now. Check out the [workshop video (second half)](https://www.youtube.com/watch?v=sHQaeVm5hT8&list=PL3MmuxUbc_hIhxl5Ji8t4O6lPAOpHaCLR&index=84) to learn how to use it. The notes are [here](https://github.com/alexeygrigorev/workshops/tree/main/mlzoomcamp-serverless)
+
+
+## 9.7 API Gateway: Exposing the Lambda Function
 
 
 ## NOTES:
