@@ -1,5 +1,6 @@
 ## Learning PyTorch
 
+### CHECK THE [JNB](./learning-pytorch.ipynb) FOR HANDS-ON
 
 [YT Link](https://www.youtube.com/watch?v=r1bquDz5GGA)
 
@@ -50,6 +51,139 @@ As soon as the parameter is set, PyTorch begins to build a computation graph
 Let's say we compute z=x.y, where y=a+b 
 
 ![alt text](./images/5.png)
+
+Every computational graph built is stored, and to access it, you can use the attribute - `.grad_fn`
+
+### Operations 
+
+1. Element-wise multiplication (`*`)
+
+Multiplies matching positions. 
+Key rule: Tensors must have the exact same shape. 
+
+![alt text](./images/6.png)
+
+2. Matrix Multiplication (`@`)
+
+Powers neural networks!!
+
+Rule: Matrix1 Columns = Matrix2 Rows
+
+![alt text](./images/7.png)
+
+### Reduction Operation 
+
+A `reduction` is any operation that reduces a tensor to a smaller number of elements. 
+
+![alt text](./images/8.png)
+
+The `dim` argument lets you control "which direction to collapse"
+
+dim=0; collases rows, operates "vertically"
+dim=1; collapses columns, operates "horizontally"
+
+
+![alt text](./images/9.png)
+
+
+1. Selecting data
+
+    - Basic Indexing (check jnb)
+    - Dynamic Selection (check jnb) - `torch.argmax()`
+    - Standard Indexing (check jnb) - `torch.gather()`
+
+2. Forward Pass
+
+We'll implement a model's first guess (it's random) using only the raw tensor operation we've just learned. 
+
+Starting with Simple Linear Regression
+
+y = Xw + b 
+
+`w` and `b` are knobs our model can turn. So, we need to find the perfect w and b so y is closest to the real target value. 
+
+Check JNB. 
+
+#### What is a backward pass?
+
+A backward pass is the step where a neural network figures out how to change its parameters (weights and biases) to reduce error.
+
+In simple terms:
+
+Forward pass = make a prediction
+Backward pass = figure out how wrong it was and how to fix it
+
+example:
+
+```python 
+
+import torch
+
+x = torch.tensor(2.0)
+W = torch.tensor(3.0, requires_grad=True)
+
+y = W * x
+
+# This is the forward pass.
+# What happened? Input: x = 2, Weight: W = 3, Output: 6
+
+# Now, define loss. 
+
+loss = (y - 10) ** 2
+
+# Error = 6 - 10 = -4
+# Loss = (-4)^2 = 16 
+
+loss.backward()
+
+# This tells PyTorch: “Figure out how changing W affects the loss.”
+
+print(W.grad)
+
+```
+
+Output:
+
+tensor(-16.)
+
+Meaning, if you increase W slightly, the loss will decrease. 
+
+The number -16 tells:
+
+Direction (negative = increase W)
+
+Strength (how much it matters)
+
+Note:
+
+| Sign of gradient | Meaning                                          |
+| ---------------- | ------------------------------------------------ |
+| **Positive (+)** | Increasing the weight makes the error **worse**  |
+| **Negative (−)** | Increasing the weight makes the error **better** |
+
+
+So, if W.grad = -16
+It means:
+“Increase W to reduce the error.”
+
+Why do we care about the sign?
+
+`new_weight = old_weight − learning_rate × gradient`
+
+i.e when gradient increases, the new_weight decreases. 
+if gradient is small, the new_weight needs to be increased. 
+**So the sign controls the direction of learning.**
+
+Think of it like this:
+
+16 → changing the weight matters a lot
+
+1 → changing the weight matters a little
+
+0 → changing the weight doesn’t matter
+
+So 16 is the strength of the signal.
+
 
 
 ### Difference between TensorFlow and PyTorch 
